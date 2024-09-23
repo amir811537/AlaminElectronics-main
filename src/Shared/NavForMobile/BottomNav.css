@@ -1,0 +1,207 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* .body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: #000000;
+} */
+
+.navigation {
+    position: relative;
+    /* width: 100vw; */
+    height: 70px;
+    background:transparent;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* border-radius: 10px; */
+}
+
+.navigation ul {
+    display: flex;
+    /* margin-bottom:  -55px; */
+    width: 390px; 
+
+}
+
+.navigation ul li {
+    position: relative;
+    padding-top: 20px;
+
+    /* top: -20%; */
+    width: 100%;
+    
+    height: 70px; 
+    list-style: none;
+    z-index: 1;
+    background-color:    rgb(219, 68, 68);
+}
+
+.navigation ul li a {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    text-align: center;
+    font-weight: 500;
+}
+
+.navigation ul li a .icon {
+    position: relative;
+    display: block;
+
+    line-height: 75px;
+    font-size: 1.5em;
+    text-align: center;
+    /* color: #000; */
+    transition: .5s;
+}
+
+.navigation ul li.active a .icon {
+    transform: translateY(-38px);
+}
+
+.navigation ul li a .text {
+    position: absolute;
+    color: white ;
+    font-weight: 400;
+    font-size: .75em;
+    letter-spacing: .05em;
+    opacity: 0;
+    padding-top : 10px;
+transform: translateY(20px);
+    transition: .5s;
+}
+
+.navigation ul li.active a .text {
+    opacity: 1;
+    transform: translateY(10px);
+}
+
+.navigation ul li a .circle {
+    position: absolute;
+    display: block;
+    width: 50px;
+    height: 50px;
+    background: transparent;
+    border-radius: 50%;
+    border: 1.8px solid #fff;
+    transform: translateY(-37px) scale(0);
+}
+
+.navigation ul li.active a .circle {
+    transition: .5s;
+    
+    transition-delay: .5s;
+    transform: translateY(-37px) scale(1);
+}
+
+
+.navigation ul li.active {
+    width: 100%;
+  position:relative;
+  z-index:0;
+
+
+
+    
+   
+}
+
+.navigation ul li.active {
+    
+    position: relative;
+    z-index: 1; /* Ensure it's above the default stack */
+    background-color: transparent;
+    transition: .5s;
+    
+}
+
+.navigation ul li.active::before {
+    content: "";
+    position: absolute;
+    z-index: 0; /* Place behind the content but above the background */
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgb(219, 68, 68);
+    clip-path: polygon(0 100%, 0 0, 4% 6%, 8% 14%, 13% 23%, 20% 31%, 29% 37%, 38% 41%, 49% 42%, 60% 41%, 71% 38%, 80% 33%, 88% 25%, 93% 18%, 97% 8%, 100% 0, 100% 100%);
+    
+}
+
+
+
+.indicator {
+    position: absolute;
+    top: -55%;
+   left : 2.4%;
+    width: 60px;
+    height: 60px;
+    background: rgb(219, 68, 68);
+    /* border: 6px solid #000000; */
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: .5s;
+    z-index: -999;
+
+   
+}
+
+.indicator::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: -10px;
+    width: 20px;
+    height: 20px;
+    background: transparent;
+    border-top-right-radius: 20px;
+    /* box-shadow: 1px -10px 0 #000000; */
+}
+
+.indicator::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    right: -22px;
+    width: 20px;
+    height: 20px;
+    background: transparent;
+    border-top-left-radius: 20px;
+    /* box-shadow: -1px -10px 0 #000000; */
+}
+
+.navigation ul li:nth-child(1).active~.indicator {
+    transform: translateX(calc(83px * 0));
+}
+
+.navigation ul li:nth-child(2).active~.indicator {
+    transform: translateX(calc(78px * 1));
+}
+
+.navigation ul li:nth-child(3).active~.indicator {
+    transform: translateX(calc(78px * 2));
+}
+
+.navigation ul li:nth-child(4).active~.indicator {
+    transform: translateX(calc(78px * 3));
+}
+
+.navigation ul li:nth-child(5).active~.indicator {
+    transform: translateX(calc(78px * 4));
+}
+
+
+
