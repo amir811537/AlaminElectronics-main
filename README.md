@@ -1,6 +1,6 @@
-# bikroyElectronics
+# alaminElectronics
 
-bikroyElectronics is a comprehensive e-commerce platform for selling and purchasing electronics. The site is designed with a user-friendly interface, secure transactions, and a range of features that enhance both user and admin experiences.
+alaminElectronics is a comprehensive e-commerce platform for selling and purchasing electronics. The site is designed with a user-friendly interface, secure transactions, and a range of features that enhance both user and admin experiences.
 
 ## Key Features
 
@@ -32,7 +32,7 @@ bikroyElectronics is a comprehensive e-commerce platform for selling and purchas
 
 ## Installation
 
-Follow these steps to set up the bikroyElectronics project on your local machine:
+Follow these steps to set up the alaminElectronics project on your local machine:
 
 #### **Prerequisites**
 
@@ -48,13 +48,13 @@ Make sure you have the following installed on your system:
 1. Clone the repository:
 
     ```
-    git clone https://github.com/Mustafiz82/BikroyElectronics
+    git clone https://github.com/amir811537
     ```
 
 2. Navigate to the project directory:
 
     ```
-    cd BikroyElectronics
+    cd alaminElectronics
     ```
 
 3. Install dependencies:
@@ -94,15 +94,14 @@ Make sure you have the following installed on your system:
 
 ## Useful Links
 
-- **Website:** [BikroyElectronics.web.app](https://bikroyelectronics.web.app/)
-- **Client Repository:** [GitHub Repository](https://github.com/Mustafiz82/BikroyElectronics) 
-- **Server Repository:** [GitHub Repository](https://github.com/Mustafiz82/BikroyElectronics-server) 
+- **Website:** [alaminElectronics.web.app](https://alaminelectronics.web.app/)
+- **Client Repository:** [GitHub Repository](https://github.com/amir811537/alaminElectronics) 
+- **Server Repository:** [GitHub Repository](https://github.com/amir811537/alaminElectronics-server) 
 
 
 ## Contact
 
 For any questions or issues, feel free to reach out at:
 
-- **Email:** [mustafiz8260@gmail.com](mailto:mustafiz8260@gmail.com)
-- **LinkedIn:** [Visit LinkedIn ](https://www.linkedin.com/in/mdmustafiz8260/)
+- **Email:** [amirhossain.bc75@gmail.com](mailto:amirhossain.bc75@gmail.com)
 

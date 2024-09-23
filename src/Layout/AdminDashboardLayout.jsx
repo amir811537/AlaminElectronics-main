@@ -15,7 +15,7 @@ const AdminDashboardLayout = () => {
 
 				<div className="flex items-center justify-between gap-2 sticky lg:hidden z-[998] bg-white top-0 p-4 px-4">
 						<div className="flex-1 ">
-							<h1 className="text-3xl ">BikroyElectronics</h1>
+							<h1 className="text-3xl ">Al-Amin Electronics</h1>
 
 						</div>
 						<label htmlFor="my-drawer-2" className="  text-5xl drawer-button lg:hidden">

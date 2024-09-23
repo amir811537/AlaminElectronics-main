@@ -92,7 +92,7 @@ const Login = () => {
 				<div className="lg:w-1/2  lg:h-screen flex lg:items-center">
 					<div className=" max-w-[500px] h md:-mt-24 lg:-mt-0 md:shadow-2xl lg:shadow-none bg-white font-poppins py-5 lg:py-20 px-10">
 						<h1 className="font-inter font-medium text-2xl lg:text-3xl">
-							Log in to BikroyElectronics
+							Log in to Al-Amin Electronics
 						</h1>
 
 						<p className="mt-10 lg:mt-5 font-medium">
