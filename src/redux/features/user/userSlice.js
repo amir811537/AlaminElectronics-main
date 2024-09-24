@@ -31,7 +31,7 @@ export const createUser = createAsyncThunk(
       const user = userCredential.user;
       const userData = { name: user.displayName, email: user.email };
 
-      const apiUrl = "http://localhost:5144/users";
+      const apiUrl = "https://alamin-electronics-server-main.vercel.app/users";
       const response = await fetch(apiUrl, {
         method: 'POST',
         headers: {
@@ -45,7 +45,7 @@ export const createUser = createAsyncThunk(
         throw new Error(errorData.message || 'Failed to create user');
       }
 
-      axios.post("http://localhost:5144/jwt" , user ,  {
+      axios.post("https://alamin-electronics-server-main.vercel.app/jwt" , user ,  {
         withCredentials: true, 
       })
       .then(res => console.log(res.data))
@@ -69,7 +69,7 @@ export const loginUser = createAsyncThunk(
       const user = userCredential.user;
       const userData = { name: user.displayName, email: user.email };
 
-      axios.post("http://localhost:5144/jwt" , user ,  {
+      axios.post("https://alamin-electronics-server-main.vercel.app/jwt" , user ,  {
         withCredentials: true, 
       })
       .then(res => console.log(res.data))
@@ -93,7 +93,7 @@ export const signInWithGoogle = createAsyncThunk(
       const userData = { name: user.displayName, email: user.email, isLoggedIn: true };
 
       try {
-        const apiUrl = "http://localhost:5144/users";
+        const apiUrl = "https://alamin-electronics-server-main.vercel.app/users";
         const response = await fetch(apiUrl, {
           method: 'POST',
           headers: {
@@ -111,7 +111,7 @@ export const signInWithGoogle = createAsyncThunk(
         // Optionally, you can handle the fetch error here, for example, by logging it or notifying the user.
       }
 
-      axios.post("http://localhost:5144/jwt" , user ,  {
+      axios.post("https://alamin-electronics-server-main.vercel.app/jwt" , user ,  {
         withCredentials: true, 
       })
       .then(res => console.log(res.data))

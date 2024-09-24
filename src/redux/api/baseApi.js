@@ -3,7 +3,7 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 export const baseApi = createApi({
 	reducerPath: "api",
-	baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:5144", credentials: "include" }),
+	baseQuery: fetchBaseQuery({ baseUrl: "https://alamin-electronics-server-main.vercel.app", credentials: "include" }),
 	// baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:5144", credentials: "include" }),
 	tagTypes: ['user', 'products', 'singleProduct', 'wishlist', 'cart', 'orders', 'flashSale', 'coupon'],
 
