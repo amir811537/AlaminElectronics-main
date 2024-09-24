@@ -60,7 +60,7 @@ const Contack = () => {
 					</div>
 
 					<p>We are available 24/7, 7 days a week.</p>
-					<p className="">phone : +8801742950624</p>
+					<p className="">phone : +8801782240624</p>
 				</div>
 				<div className="w-80 h-[2px] mt-10 bg-black"></div>
 				<div className="space-y-2 my-10 font-medium font-poppins">
