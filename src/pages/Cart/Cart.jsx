@@ -84,6 +84,8 @@ let total=cartTotal+shippingCharge;
 			const discountedTotal = cartTotal - (cartTotal * (couponData?.discount / 100))+shippingCharge;
 			setNewCartTotal(discountedTotal)
 			dispatch(
+
+				// added new
 				setDiscount({
 					discount: couponData?.discount
 				})
