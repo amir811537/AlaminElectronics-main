@@ -20,9 +20,7 @@ const Checkout = () => {
     const [paymentMethod, setPaymentMethod] = useState("SSL")
 
 
-    console.log(discount, discountedCartTotal)
-
-    console.log(paymentMethod)
+   
 
 
     const cartTotal = cartData?.reduce((accumulator, product) => {
@@ -121,7 +119,7 @@ const Checkout = () => {
                             defaultValue={userData?.name || ""}
                         />
                     </div>
-                    <div  >
+                    {/* <div  >
                         <label htmlFor="companyName" className='text-[#00000090]'>
                             Company Name  (optional) <sup></sup>
                         </label>
@@ -130,7 +128,7 @@ const Checkout = () => {
                             {...register("companyName")}
                             className=" input mt-2 focus:border-none focus:outline-none  rounded-sm w-full  bg-[#F5F5F5]"
                         />
-                    </div>
+                    </div> */}
                     <div  >
                         <label htmlFor="streetAddress" className='text-[#00000090]'>
                             Address<sup className='text-primary'>*</sup>
@@ -214,7 +212,10 @@ const Checkout = () => {
                     </div>
                     <div className="flex justify-between border-b-2 pb-4 border-b-black">
                         <span>Shipping:</span>
-                        <span>Free</span>
+                      <select name="" id="">
+                        <option value="60">ঢাকার ভিতরে 60 টাকা</option>
+                        <option value="120">ঢাকার বাইরে ডেলিভারি চার্জ 120 টাকা </option>
+                      </select>
                     </div>
                     <div className="flex justify-between border-b-2 pb-4 border-b-black">
                         <span>Discount:</span>
@@ -229,9 +230,18 @@ const Checkout = () => {
                         <div className='flex items-center gap-2 my-4'>
                             <input onChange={() => setPaymentMethod("COD")} type="radio" name="radio-8" className="radio radio-error" /> <span> Cash On Delivery</span>
                         </div>
-                        <div className='flex  items-center gap-2 my-4'>
-                            <input defaultChecked onChange={() => setPaymentMethod("SSL")} type="radio" name="radio-8" className="radio radio-error " /> <span className=''> Pay with SSLCOMMERZ </span>
+                        <div>
+                            <p className='text-red-500 font-semibold'>Note: শুধুমাত্র ৫০০ টাকার উপরে কেনাকাটা তে থাকছে ক্যাশ অন ডেলিভারি</p>
                         </div>
+                        <div>
+                            <p  className='text-red-500 font-semibold text-xl'>Online payment (send money only) </p>
+                            <p>Bkash : 01795044545</p>
+                            <p>Nagod : 01904722779 </p>
+
+                        </div>
+                        {/* <div className='flex  items-center gap-2 my-4'>
+                            <input defaultChecked onChange={() => setPaymentMethod("SSL")} type="radio" name="radio-8" className="radio radio-error " /> <span className=''> Pay with SSLCOMMERZ </span>
+                        </div> */}
 
                     </div>
                     <div className="flex items-center">

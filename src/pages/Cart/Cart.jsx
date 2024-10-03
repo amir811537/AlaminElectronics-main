@@ -16,10 +16,15 @@ const Cart = () => {
 	const { data: cartData, isLoading, error ,isError} = useGetCartProductQuery(email)
 	const [deleteProducts, { data: deletedStatus }] = useDeleteAllCartProductMutation()
 	const [checkCoupon ,{data: couponData}] = useSetSingleCouponMutation()
-	
+	const [shippingCharge, setShippingCharge] = useState(60); // Default shipping charge for Dhaka
+
 	let cartTotal = cartData?.reduce((accumulator, product) => {
 		return accumulator + ((product?.discountedPrice || product?.price) * product?.quantity);
 	}, 0);
+
+let total=cartTotal+shippingCharge;
+
+
 	const [newCartTotal , setNewCartTotal] = useState(cartTotal)
 	const dispatch = useDispatch()
 
@@ -76,7 +81,7 @@ const Cart = () => {
 	useEffect(() => {
 		if (couponData) {
 		  if (couponData.success) {
-			const discountedTotal = cartTotal - (cartTotal * (couponData?.discount / 100));
+			const discountedTotal = cartTotal - (cartTotal * (couponData?.discount / 100))+shippingCharge;
 			setNewCartTotal(discountedTotal)
 			dispatch(
 				setDiscount({
@@ -85,7 +90,7 @@ const Cart = () => {
 			)
 			dispatch(
 				setDiscountedCartTotal({
-					discountedCartTotal: discountedTotal ||  0
+					discountedCartTotal:100|| discountedTotal ||  0
 				})
 			)
 			console.log("Discounted Cart Total:", discountedTotal);
@@ -237,16 +242,19 @@ const Cart = () => {
 							<span>{cartTotal}</span>
 						</div>
 						<div className="flex justify-between border-b-2 pb-4 border-b-black">
-							<span>Shipping:</span>
-							<span>Free</span>
-						</div>
+                        <span>Shipping:</span>
+                      <select onChange={(e) => setShippingCharge(parseInt(e.target.value))} name="" id="">
+                        <option value="60">Inside Dhaka 60 Taka</option>
+                        <option value="120">Outside Dhaka 120 Taka</option>
+                      </select>
+                    </div>
 						<div className="flex border-b-2  pb-4 border-b-black	justify-between ">
 							<span>Discount:</span>
 							<span>{couponData?.discount || 0}%</span>
 						</div>
 						<div className="flex  justify-between ">
 							<span>Total:</span>
-							<span>{newCartTotal || cartTotal}</span>
+							<span>{newCartTotal || total}</span>
 						</div>
 						<div className="flex justify-center items-center">
 							<Link to="/checkout"  className="btn btn-error text-white bg-primary rounded-sm px-8 mt-8">
