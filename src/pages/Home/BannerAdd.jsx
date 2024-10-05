@@ -1,6 +1,6 @@
 import React from 'react';
 import Countdown from 'react-countdown';
-import drone from "../../assets/banner/bannerAdd.png"
+import drone from "../../assets/banner/sunglassadd.png"
 import { Link } from 'react-router-dom';
 
 const BannerAdd = () => {
