@@ -100,6 +100,42 @@ const ProductDetail = () => {
     }
   };
 
+  const buyNow =async()=>{
+
+    if (!product || !email) {
+      console.error('Product or email is undefined', { product, email });
+      return navigate("/login")
+    }
+
+    const { _id, ...rest } = product;
+
+    const cartObject = {
+      productId: _id,
+      email: email,
+      quantity: 1,
+      ...rest
+    };
+
+    try {
+      await setCart(cartObject)
+      navigate('/cart')
+      toast.success('product Added to Cart', {
+        style: {
+          padding: '16px',
+          color: '#ffffff',
+          background: '#DB4444',
+        },
+        iconTheme: {
+          primary: '#ffffff',
+          secondary: '#DB4444',
+        },
+      });;
+    } catch (error) {
+      console.error('Error adding to cart:', error);
+      setActionStatus('error');
+    }
+
+  }
   useEffect(() => {
     if (actionStatus === 'success') {
       console.log('Product added to wishlist successfully!');
@@ -154,7 +190,7 @@ const ProductDetail = () => {
           </div>
 
           <div>
-            <button className="btn btn-error bg-primary rounded-none w-full text-white btn">
+            <button onClick={buyNow} className="btn btn-error bg-primary rounded-none w-full text-white btn">
               <h1>Buy Now</h1>
             </button>
           </div>
