@@ -201,7 +201,7 @@ const ProductDetail = () => {
           width: '200%',
           height: '150%',
         },
-        enlargedImagePosition: isMobile ? 'over' : 'beside', // Use 'over' for mobile, 'beside' for larger screens
+        enlargedImagePosition: isMobile ? 'over' : 'beside', 
       }}
     />
   </div>
