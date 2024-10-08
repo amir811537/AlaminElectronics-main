@@ -206,6 +206,7 @@ const ProductDetail = () => {
     />
   </div>
 </div>
+{/* some change in image showing  */}
 
 
       <div className="w-full lg:w-1/2 space-y-5">
