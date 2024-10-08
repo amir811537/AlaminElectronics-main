@@ -9,6 +9,8 @@ import {
   useSetWishListProductMutation
 } from "../../redux/api/baseApi";
 import toast from "react-hot-toast";
+import ReactImageMagnify from "react-image-magnify";
+import { EnlargedImagePosition } from "react-image-magnify/dist/prop-types/EnlargedImage";
 
 const ProductDetail = () => {
   const { id } = useParams();
@@ -145,6 +147,25 @@ const ProductDetail = () => {
   }, [actionStatus]);
 
 
+
+  const [isMobile, setIsMobile] = useState(false);
+
+  // Detect if the screen is mobile-sized
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 768); // Mobile width threshold
+    };
+
+    // Run on mount
+    handleResize();
+
+    // Add event listener for window resize
+    window.addEventListener('resize', handleResize);
+
+    // Cleanup event listener on unmount
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
   if (productLoading) return <div className="mx-5 lg:mx-28 flex flex-col lg:flex-row gap-12 my-5 lg:my-10">
 
     <div className="skeleton h-[350px] lg:h-[500px] w-full lg:w-[500px] rounded-none" ></div>
@@ -162,9 +183,30 @@ const ProductDetail = () => {
 
   return (
     <div className="mx-5 lg:mx-auto  flex flex-col lg:flex-row gap-12 my-5 lg:my-10">
-      <div className=" ">
-        <img src={product?.imageUrl} className="w-[500px] bg-[#F5F5F5]" alt="" />
-      </div>
+  <div className="max-w-[400px] bg-[#F5F5F5] flex justify-center items-center h-[400px]">
+  <div className="w-[80%] h-auto">
+    <ReactImageMagnify
+      {...{
+        smallImage: {
+          alt: 'Product image cannot be loaded!',
+          isFluidWidth: true,
+          src: product?.imageUrl || '',
+        },
+        largeImage: {
+          src: product?.imageUrl || '',
+          width: 1200,
+          height: 1800,
+        },
+        enlargedImageContainerDimensions: {
+          width: '200%',
+          height: '150%',
+        },
+        enlargedImagePosition: isMobile ? 'over' : 'beside', // Use 'over' for mobile, 'beside' for larger screens
+      }}
+    />
+  </div>
+</div>
+
 
       <div className="w-full lg:w-1/2 space-y-5">
         <h1 className="text-xl text-primary font-medium">{product?.title}</h1>
@@ -173,8 +215,6 @@ const ProductDetail = () => {
         </div>
 
         <h1 className="text-3xl font-medium">BDT {product?.discountedPrice ? product?.discountedPrice : product?.price}<span className={`${product?.discountedPrice ? "" : "hidden"} text-[#00000090] line-through ml-4`}>{product?.price}</span></h1>
-
-        <p className="inline-block" dangerouslySetInnerHTML={{ __html: product?.description }}></p>
 
         <div className="flex gap-4">
           <button onClick={addToWishList} className="bg-[#F5F5F5] p-2 px-3 flex items-center b text-black rounded-none">
@@ -195,6 +235,9 @@ const ProductDetail = () => {
             </button>
           </div>
         </div>
+        <p className="inline-block" dangerouslySetInnerHTML={{ __html: product?.description }}></p>
+
+        
 
         {isLoading && <p>Loading...</p>}
 
