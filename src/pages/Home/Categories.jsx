@@ -15,7 +15,7 @@ const Categories = ({ categories  , isLoading}) => {
 		dispatch(setCategories({
 			categories: category
 		}))
-		console.log(category);
+		// console.log(category);
 	}
 
 	
@@ -39,14 +39,14 @@ const Categories = ({ categories  , isLoading}) => {
 					Categories
 				</h1>
 			</div>
-			<h1 className="text-2xl lg:text-4xl mt-10 font-medium font-inter">
+			<h1 className="text-xl lg:text-4xl mt-10 font-medium font-inter">
 				Browse By Category
 			</h1>
 
 
 			<div className="  flex flex-col xl:flex-row items-center justify-center gap-5 lg:gap-10 relative">
 				{/* arrow */}
-				<div className="absolute   -top-12 right-0 text-2xl  flex gap-2 lg:gap-8 z-50 pl-5">
+				<div className="absolute   -top-12 right-0 lg:text-2xl text-lg  flex gap-2 lg:gap-8 z-50 pl-5">
 					{/* arrow left */}
 					<button
 						onClick={prevSlider}
