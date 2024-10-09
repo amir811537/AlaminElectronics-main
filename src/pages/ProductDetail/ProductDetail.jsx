@@ -9,8 +9,6 @@ import {
   useSetWishListProductMutation
 } from "../../redux/api/baseApi";
 import toast from "react-hot-toast";
-import ReactImageMagnify from "react-image-magnify";
-import { EnlargedImagePosition } from "react-image-magnify/dist/prop-types/EnlargedImage";
 
 const ProductDetail = () => {
   const { id } = useParams();
@@ -148,23 +146,7 @@ const ProductDetail = () => {
 
 
 
-  const [isMobile, setIsMobile] = useState(false);
-
-  // Detect if the screen is mobile-sized
-  useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.innerWidth <= 768); // Mobile width threshold
-    };
-
-    // Run on mount
-    handleResize();
-
-    // Add event listener for window resize
-    window.addEventListener('resize', handleResize);
-
-    // Cleanup event listener on unmount
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
+  
 
   if (productLoading) return <div className="mx-5 lg:mx-28 flex flex-col lg:flex-row gap-12 my-5 lg:my-10">
 
@@ -183,30 +165,11 @@ const ProductDetail = () => {
 
   return (
     <div className="mx-5 lg:mx-auto  flex flex-col lg:flex-row gap-12 my-5 lg:my-10">
-  <div className="max-w-[400px] bg-[#F5F5F5] flex justify-center items-center h-[400px]">
-  <div className="w-[80%] h-auto">
-    <ReactImageMagnify
-      {...{
-        smallImage: {
-          alt: 'Product image cannot be loaded!',
-          isFluidWidth: true,
-          src: product?.imageUrl || '',
-        },
-        largeImage: {
-          src: product?.imageUrl || '',
-          width: 1200,
-          height: 1800,
-        },
-        enlargedImageContainerDimensions: {
-          width: '200%',
-          height: '150%',
-        },
-        enlargedImagePosition: isMobile ? 'over' : 'beside', 
-      }}
-    />
-  </div>
+
+<div className="max-w-[400px] bg-[#F5F5F5] flex justify-center items-center h-[400px] mx-auto">
+  <img className=" w-[80%] h-auto" src={product?.imageUrl || ''}alt="product load hoy nai!!" />
 </div>
-{/* some change in image showing   */}
+
 
 
       <div className="w-full lg:w-1/2 space-y-5">
