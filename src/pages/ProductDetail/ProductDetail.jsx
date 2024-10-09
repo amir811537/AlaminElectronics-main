@@ -4,16 +4,18 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import {
   useGetSingleProductsQuery,
-  useGetWishlistedStutusQuery,
   useSetCartProductMutation,
   useSetWishListProductMutation
 } from "../../redux/api/baseApi";
 import toast from "react-hot-toast";
+import InnerImageZoom from 'react-inner-image-zoom'; // Correct import
+import 'react-inner-image-zoom/lib/InnerImageZoom/styles.min.css';
+
 
 const ProductDetail = () => {
   const { id } = useParams();
   const { data: product, isLoading: productLoading } = useGetSingleProductsQuery(id);
-  console.log("=============>",product)
+  // console.log("=============>",product)
   const { email } = useSelector((state) => state.userSlice);
   const [wishListStatus, setWishListStatus] = useState(null); // State to hold wish list status
   const [setWishListProduct, { data: wishListData, error, isLoading }] = useSetWishListProductMutation();
@@ -164,23 +166,28 @@ const ProductDetail = () => {
   </div>
 
   return (
-    <div className="mx-5 lg:mx-auto  flex flex-col lg:flex-row gap-12 my-5 lg:my-10">
-
-<div className="max-w-[400px] bg-[#F5F5F5] flex justify-center items-center h-[400px] mx-auto">
-  <img className=" w-[80%] h-auto" src={product?.imageUrl || ''}alt="product load hoy nai!!" />
-</div>
-
-
-
-      <div className="w-full lg:w-1/2 space-y-5">
-        <h1 className="text-xl text-primary font-medium">{product?.title}</h1>
-        <div className="flex gap-4 items-center mt-4">
-          <span className="text-green-400 pl-2 border-l-2">In stock</span>
-        </div>
-
-        <h1 className="text-3xl font-medium">BDT {product?.discountedPrice ? product?.discountedPrice : product?.price}<span className={`${product?.discountedPrice ? "" : "hidden"} text-[#00000090] line-through ml-4`}>{product?.price}</span></h1>
-
-        <div className="flex gap-4">
+    <div className="mx-5 lg:mx-auto flex flex-col lg:flex-row gap-12 my-5 lg:my-10">
+    {/* Image section */}
+    <div className="max-w-[400px] w-full lg:w-1/3 bg-[#F5F5F5] flex justify-center items-center h-[400px] mx-auto">
+      <InnerImageZoom
+        src={product?.imageUrl || ''}
+        zoomSrc={product?.imageUrl || ''}
+        zoomPreload={true}
+      />
+    </div>
+  
+    {/* Product details section */}
+    <div className="w-full lg:w-2/3 space-y-5">
+      <h1 className="text-xl text-primary font-medium">{product?.title}</h1>
+      <div className="flex gap-4 items-center mt-4">
+        <span className="text-green-400 pl-2 border-l-2">In stock</span>
+      </div>
+      <h1 className="text-3xl font-medium">
+        BDT {product?.discountedPrice ? product?.discountedPrice : product?.price}
+        <span className={`${product?.discountedPrice ? "" : "hidden"} text-[#00000090] line-through ml-4`}>{product?.price}</span>
+      </h1>
+  
+      <div className="flex gap-4">
           <button onClick={addToWishList} className="bg-[#F5F5F5] p-2 px-3 flex items-center b text-black rounded-none">
             {
               wishListStatus?.wishListed === 'success' ? <GoHeartFill className=" text-2xl" /> : <GoHeart className=" text-2xl" />
@@ -199,14 +206,11 @@ const ProductDetail = () => {
             </button>
           </div>
         </div>
-        <p className="inline-block" dangerouslySetInnerHTML={{ __html: product?.description }}></p>
-
-        
-
-        {isLoading && <p>Loading...</p>}
-
-      </div>
+  
+      <p className="inline-block" dangerouslySetInnerHTML={{ __html: product?.description }}></p>
     </div>
+  </div>
+  
   );
 };
 
