@@ -103,9 +103,9 @@ const ProductCard = ({ item, discount }) => {
 
 				<div className="rounded-md relative  bg-[#F5F5F5]">
 					<div className="p-6 max-h-[250px] flex items-center">
-						<a href={`/productdetail/${item?._id}`}>
+						<Link to={`/productdetail/${item?._id}`}>
 						<img src={item?.imageUrl} className="mx-auto " alt="" />
-						</a>
+						</Link>
 					</div>
 					<button onClick={addToCart} className="flex hover:text-black rounded-b-md rounded-none w-full text-white  bg-black btn ">
 						<IoCartOutline className="text-xl mr-2" />
