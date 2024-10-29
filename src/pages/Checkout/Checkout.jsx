@@ -17,7 +17,7 @@ const Checkout = () => {
     const [orderButtonText, setOrderButtonText] = useState("Proceed Order")
     const [deleteProducts, { data: deletedStatus }] = useDeleteAllCartProductMutation()
     const { discount, discountedCartTotal } = useSelector((state) => state.CartSlice);
-    const [paymentMethod, setPaymentMethod] = useState("SSL")
+    const [paymentMethod, setPaymentMethod] = useState("COD")
 
 
    
@@ -228,19 +228,18 @@ const Checkout = () => {
 
                     <div className='pt-5'>
                         <div className='flex items-center gap-2 my-4'>
-                            <input onChange={() => setPaymentMethod("COD")} type="radio" name="radio-8" className="radio radio-error" /> <span> Cash On Delivery</span>
+                            <input defaultChecked onChange={() => setPaymentMethod("COD")} type="radio" name="radio-8" className="radio radio-error" /> <span> Cash On Delivery</span>
                         </div>
-                        <div>
-                            <p className='text-red-500 font-semibold'>Note: শুধুমাত্র ৫০০ টাকার উপরে কেনাকাটা তে থাকছে ক্যাশ অন ডেলিভারি</p>
-                        </div>
-                        <div>
-                            <p  className='text-red-500 font-semibold text-xl'>Online payment (send money only) </p>
-                            <p>Bkash : 01795044545</p>
-                            <p>Nagod : 01904722779 </p>
+                        <div className='flex items-center gap-2 my-4'>
+                            <input  name='radio-8' type='radio' className='radio radio-error'/>  <span> Online payment (send money only) </span>
 
                         </div>
+                        <div>
+                         <p>Bkash : 01795044545</p>
+                         <p>Nagod : 01904722779 </p>
+                         </div>
                         {/* <div className='flex  items-center gap-2 my-4'>
-                            <input defaultChecked onChange={() => setPaymentMethod("SSL")} type="radio" name="radio-8" className="radio radio-error " /> <span className=''> Pay with SSLCOMMERZ </span>
+                            <input  onChange={() => setPaymentMethod("SSL")} type="radio" name="radio-8" className="radio radio-error " /> <span className=''> Pay with SSLCOMMERZ </span>
                         </div> */}
 
                     </div>
