@@ -8,9 +8,9 @@ import "swiper/css/navigation";
 import { Autoplay, Pagination, Navigation } from "swiper/modules";
 
 import Banner2 from "../assets/banner/banner1.2.jpeg";
-import Banner3 from "../assets/banner/banner3.3.jpeg";
-import Banner1 from "../assets/banner/banner2.2.jpeg";
-import Banner4 from "../assets/banner/banner4.webp";
+import Banner3 from "../assets/banner/sunglass no 1.png";
+import Banner1 from "../assets/banner/blue watch.png";
+import Banner4 from "../assets/banner/brachs.png";
 import Banner5 from "../assets/banner/banner5.webp";
 
 export default function Slider() {
