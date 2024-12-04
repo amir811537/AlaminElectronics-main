@@ -23,7 +23,10 @@ const ProductDetail = () => {
   const [actionStatus, setActionStatus] = useState(null); // null for no action, 'success', 'error'
   const navigate = useNavigate()
 
-
+ // Scroll to top when the component is rendered
+ useEffect(() => {
+  window.scrollTo(0, 0);
+}, []);
   //  wishlist ---------------------------------------
 
   const addToWishList = async () => {
