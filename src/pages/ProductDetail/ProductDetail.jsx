@@ -1,7 +1,22 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect,useRef, useState } from "react";
 import { GoHeart, GoHeartFill } from "react-icons/go";
 import { useNavigate, useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { Swiper, SwiperSlide } from 'swiper/react';
+
+
+// Import Swiper styles
+import 'swiper/css';
+import 'swiper/css/pagination';
+
+import './productdetail.css';
+
+// import required modules
+import { Pagination } from 'swiper/modules';
+
+
+
+
 import {
   useGetSingleProductsQuery,
   useSetCartProductMutation,
@@ -149,7 +164,17 @@ const ProductDetail = () => {
     }
   }, [actionStatus]);
 
-
+// Function to get all images (from either `imageUrl` or `imageUrls`)
+const getImages = () => {
+  if (product?.imageUrls && Array.isArray(product.imageUrls)) {
+    return product.imageUrls; // Use array of images
+  } else if (product?.imageUrl) {
+    return [product.imageUrl]; // Wrap single image in an array
+  } else {
+    return [];
+  }
+};
+const images = getImages();
 
   
 
@@ -170,14 +195,34 @@ const ProductDetail = () => {
 
   return (
     <div className="mx-5 lg:mx-auto flex flex-col lg:flex-row gap-12 my-5 lg:my-10">
-    {/* Image section */}
     <div className="max-w-[400px] w-full lg:w-1/3 bg-[#F5F5F5] flex justify-center items-center h-[400px] mx-auto">
-      <InnerImageZoom
-        src={product?.imageUrl || ''}
-        zoomSrc={product?.imageUrl || ''}
-        zoomPreload={true}
-      />
-    </div>
+        {images.length > 1 ? (
+          <Swiper
+          pagination={{
+            dynamicBullets: true,
+          }}
+          modules={[Pagination]}
+         
+            className="w-full mySwiper h-full"
+          >
+            {images.map((img, index) => (
+              <SwiperSlide key={index}>
+                <InnerImageZoom
+                  src={img}
+                  zoomSrc={img}
+                  zoomPreload={true}
+                />
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        ) : (
+          <InnerImageZoom
+            src={images[0] || ""}
+            zoomSrc={images[0] || ""}
+            zoomPreload={true}
+          />
+        )}
+      </div>
   
     {/* Product details section */}
     <div className="w-full lg:w-2/3 space-y-5">

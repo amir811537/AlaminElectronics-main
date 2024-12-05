@@ -1,109 +1,61 @@
-import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import imageUpload from "../../assets/Others/image-removebg-preview (14).svg";
 import { categoryItems } from "../../../public/categoryObject";
 import { useSetProductsMutation } from "../../redux/api/baseApi";
-import toast, { Toaster } from 'react-hot-toast';
+import toast, { Toaster } from "react-hot-toast";
 import RichTextEditor from "../../Components/RichTextEditor";
-import auth, { app } from "../../../firebase.config";
 import { getDownloadURL, getStorage, ref, uploadBytes } from "firebase/storage";
+import { app } from "../../../firebase.config";
 
 const AddProduct = () => {
   const { register, handleSubmit, reset } = useForm();
-  const [imageUrl, setImageUrl] = useState("");
+  const [imageUrls, setImageUrls] = useState(["", "", ""]); // Array to store image URLs
   const [uploading, setUploading] = useState(false);
   const [buttonText, setButtonText] = useState("Add product");
+  const [description, setDescription] = useState("");
 
-  const [setProduct, { data, isSuccess }] = useSetProductsMutation();
-  const [description, setDescription] = useState('');
+  const [setProduct, { isSuccess }] = useSetProductsMutation();
 
-  console.log(description);
   useEffect(() => {
     if (isSuccess) {
-
-      toast.success('New Product Added', {
-        style: {
-          padding: '16px',
-          color: '#ffffff',
-          background: '#DB4444',
-        },
-        iconTheme: {
-          primary: '#ffffff',
-          secondary: '#DB4444',
-        },
+      toast.success("New Product Added", {
+        style: { padding: "16px", color: "#ffffff", background: "#DB4444" },
+        iconTheme: { primary: "#ffffff", secondary: "#DB4444" },
       });
       setButtonText("Product Added");
-      reset()
-      setDescription("")
-      setImageUrl("")
+      reset();
+      setDescription("");
+      setImageUrls(["", "", ""]);
     }
-  }, [isSuccess])
+  }, [isSuccess]);
 
-  const onSubmit = (data) => {
-    setButtonText("Adding Product...");
-
-    
-    // console.log({ imageUrl, ...data });
-    setProduct({ imageUrl, description, ...data });
-
-  };
-
-
-
-  const handleImageUpload = async (e) => {
+  const handleImageUpload = async (e, index) => {
     const image = e.target.files[0];
-  
     if (image) {
       try {
-        setUploading(true); // Start uploading
-        const storage = getStorage(app); // Initialize storage
-        const storageRef = ref(storage, `images/${image.name}`); // Create reference to the file
-  
-        // Upload the image
+        setUploading(true);
+        const storage = getStorage(app);
+        const storageRef = ref(storage, `images/${image.name}`);
         await uploadBytes(storageRef, image);
-  
-        // Get the download URL
         const downloadUrl = await getDownloadURL(storageRef);
-        console.log("Image URL:", downloadUrl);
-  
-        // Set the URL in state
-        setImageUrl(downloadUrl);
-  
-        setUploading(false); // End uploading state
-  
+
+        const updatedUrls = [...imageUrls];
+        updatedUrls[index] = downloadUrl; // Update the specific image slot
+        setImageUrls(updatedUrls);
+
+        setUploading(false);
       } catch (error) {
         console.error("Error uploading the image", error);
-        setUploading(false); // Ensure we stop the loading state
+        setUploading(false);
       }
     }
   };
-  
 
-
-
-  const checkImageAvailability = (url, retries = 5, delay = 1000) => {
-    return new Promise((resolve, reject) => {
-      let attempts = 0;
-
-      const tryLoadImage = () => {
-        const img = new Image();
-        img.onload = () => resolve(true);
-        img.onerror = () => {
-          if (attempts < retries) {
-            attempts++;
-            setTimeout(tryLoadImage, delay);
-          } else {
-            reject(new Error("Image not found"));
-          }
-        };
-        img.src = url;
-      };
-
-      tryLoadImage();
-    });
+  const onSubmit = (data) => {
+    setButtonText("Adding Product...");
+    setProduct({ imageUrls, description, ...data });
   };
-  
 
   return (
     <div className="px-4">
@@ -114,7 +66,7 @@ const AddProduct = () => {
 
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="md:flex gap-5 ">
-          <div className="mt-8  flex-1 ">
+          <div className="mt-8 flex-1">
             <input
               type="text"
               placeholder="Product Title"
@@ -122,9 +74,7 @@ const AddProduct = () => {
               {...register("title", { required: true })}
               className="input focus:border-none focus:outline-none rounded-sm w-full mb-8 bg-[#F5F5F5]"
             />
-
             <RichTextEditor value={description} onChange={setDescription} />
-
             <input
               type="text"
               placeholder=" $ Price "
@@ -133,37 +83,30 @@ const AddProduct = () => {
               className="input mt-28 md:mt-20 focus:border-none focus:outline-none rounded-sm w-full bg-[#F5F5F5]"
             />
           </div>
+
           <div className="mt-8">
-            <div>
-              <input
-                type="file"
-                id="file-upload"
-                className="hidden input-file"
-                onChange={handleImageUpload}
-              />
-
-              <div className="md:w-[250px] flex  justify-center items-center w-full h-full md:h-[250px] bg-base-200">
-                <img
-                  src={imageUrl || imageUpload}
-                  alt=""
-                  className="w-full "
+            {[0, 1, 2].map((index) => (
+              <div key={index} className="mb-6">
+                <input
+                  type="file"
+                  id={`file-upload-${index}`}
+                  className="hidden"
+                  onChange={(e) => handleImageUpload(e, index)}
                 />
+                <div
+                  onClick={() => document.getElementById(`file-upload-${index}`).click()}
+                  className="cursor-pointer md:w-[150px] flex justify-center items-center w-full h-full md:h-[150px] bg-base-200"
+                >
+                  <img
+                    src={imageUrls[index] || imageUpload}
+                    alt={`Image ${index + 1}`}
+                    className="w-full"
+                  />
+                </div>
+                <p className="text-center">Image {index + 1}</p>
               </div>
+            ))}
 
-              <label
-                htmlFor="file-upload"
-                className="btn w-full md:w-[250px] mt-6 btn-error bg-primary text-white rounded-sm"
-              >
-                {uploading ? (
-                  <div className="flex gap-2 justify-center items-center">
-                    <span className="loading loading-spinner loading-sm"></span>
-                    <span>Uploading ...</span>
-                  </div>
-                ) : (
-                  "Upload Image"
-                )}
-              </label>
-            </div>
             <select
               required
               {...register("category", { required: true })}
@@ -182,8 +125,9 @@ const AddProduct = () => {
         <button
           type="submit"
           className="w-full btn mt-6 btn-error bg-primary text-white rounded-sm"
+          disabled={uploading}
         >
-          {buttonText}
+          {uploading ? "Uploading Images..." : buttonText}
         </button>
       </form>
     </div>
