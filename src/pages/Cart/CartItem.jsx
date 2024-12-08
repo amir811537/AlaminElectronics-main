@@ -42,7 +42,7 @@ const CartItem = ({ item }) => {
 
     const handleUpdateCart = (e, data) => {
         const id = data?._id
-        console.log(id, data)
+        // console.log(id, data)
 
         const updatedItem = { quantity: parseInt(e.target.value) };
         console.log("Updating item:", updatedItem);
@@ -56,7 +56,7 @@ const CartItem = ({ item }) => {
         <div className="grid grid-cols-9  font-medium mb-8 mt-16">
             <div className="flex mr-5 relative items-center col-span-4  gap-2">
                 <div className='w-1/4'>
-                    <img src={item?.imageUrl} className="w-10  p-0" alt="" />
+                    <img src={item?.imageUrl || item?.imageUrls[0]} className="w-10  p-0" alt="" />
                 </div>
                 <h1 className="lg:max-w-72 w-3/4 col-span-2">
                     {" "}

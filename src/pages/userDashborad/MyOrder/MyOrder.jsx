@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { TiDelete } from "react-icons/ti";
 import { useSelector } from "react-redux";
 import { useGetOrdersQuery, useUpdateOrderStatusMutation } from "../../../redux/api/baseApi";
@@ -13,12 +13,21 @@ const MyOrder = () => {
 	const { data: orders, isLoading ,error , isError} = useGetOrdersQuery(email)
 	const [updateOrder, { data: updateStatus }] = useUpdateOrderStatusMutation()
 
+
+
+ // Scroll to top when the component is rendered
+ useEffect(() => {
+	window.scrollTo(0, 0);
+  }, []);
+
 	const formatDateString = (dateString) => {
 		const date = new Date(dateString);
 		const options = { day: '2-digit', month: 'short', year: 'numeric' };
 		return date.toLocaleDateString('en-GB', options);
 	};
 
+
+	
 	const handleCancelOrder = (id) => {
 
 		updateOrder({ id, status: "cancelled" })

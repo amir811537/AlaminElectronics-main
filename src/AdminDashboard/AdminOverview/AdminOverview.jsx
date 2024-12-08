@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { FaBangladeshiTakaSign } from 'react-icons/fa6';
 import LineCharts from './Charts/LineCharts';
 import PieChart from './Charts/PieChart';
@@ -14,7 +14,13 @@ const AdminOverview = () => {
     const {totalUsers , totalProducts, totalOrderPrice, totalOrder , pendingOrder , totalCompletedOrder , cancelledOrders    } = statistics?.overviewData || {}
 
 
-    console.log(statistics?.overviewData)
+    // console.log(statistics?.overviewData)
+
+    
+ // Scroll to top when the component is rendered
+ useEffect(() => {
+	window.scrollTo(0, 0);
+  }, []);
 
     const convertToShortFormat = (number) => {
         if (number < 1000) {

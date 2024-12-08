@@ -69,7 +69,7 @@ const SingleOrder = () => {
                     {
                         order?.OrderDetails?.map(item => <div className='flex justify-between'>
                             <div className='flex gap-2  items-center' >
-                                <img src={item?.imageUrl} className='w-14 h-14' alt="" />
+                                <img src={item?.imageUrl || item?.imageUrls[0]} className='w-14 h-14' alt="" />
                                 <div>
                                     <h1>{item?.title}</h1>
                                     <p className='text-md text-sm text-slate-500'>{item?.category}</p>

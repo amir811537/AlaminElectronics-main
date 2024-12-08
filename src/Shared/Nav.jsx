@@ -282,10 +282,10 @@ const Nav = () => {
 							{ul}
 						</ul>
 					</div>
-					<Link to="/" className="flex gap-2 items-center text-2xl font-semibold">
+					<a href="/" className="flex gap-2 items-center text-2xl font-semibold">
       <img src={currentLogo} alt="logo" className="h-10 w-10" />
       <span>Alamin Electronics</span>
-    </Link>				</div>
+    </a>				</div>
 				<div className="navbar-center  hidden lg:flex">
 					<ul className="flex gap-8 -ml-28 font-medium px-1">{ul}</ul>
 				</div>

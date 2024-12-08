@@ -45,6 +45,7 @@ const AllProduct = () => {
 	useEffect(() => {
 		window.scrollTo(0, 0);
 	}, [location.pathname]);
+	
 
 	useEffect(() => {
 		if (typeof categories === "string") {

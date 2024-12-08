@@ -43,7 +43,7 @@ const ProductList = () => {
 					products?.map(item => <div key={item?._id} className="grid grid-cols-8 md:grid-cols-9 gap-4  font-medium my-10">
 						<div className="flex relative items-center md:col-span-4 col-span-6  gap-2">
 							<div className="min-w-12 ">
-								<img src={item?.imageUrl} className="w-10  p-0" alt="" />
+								<img src={item?.imageUrl || item.imageUrls[0]} className="w-10  p-0" alt="" />
 							</div>
 							<h1 className="max-w-72 col-span-2">
 								{" "}

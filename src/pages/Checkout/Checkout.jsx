@@ -29,6 +29,10 @@ const Checkout = () => {
 
     const navigate = useNavigate()
 
+    // Scroll to top when the component is rendered
+ useEffect(() => {
+	window.scrollTo(0, 0);
+  }, []);
     const onSubmit = async (data) => {
         setOrderButtonText("proceeding...")
 
@@ -94,12 +98,12 @@ const Checkout = () => {
 
 
 
-        console.log(cartData)
+        // console.log(cartData)
 
 
 
     }
-    console.log(userData)
+    // console.log(userData)
 
     return (<div className=' px-5 lg:px-0 my-10  mx-auto  '>
         <h1 className='text-2xl font-semibold font-inter  '>Billing Details</h1>
@@ -192,7 +196,7 @@ const Checkout = () => {
                     cartData?.map(item => <div className='grid grid-cols-2  lg:flex justify-between mb-10 items-center '>
                         <div className='flex   gap-2 items-center'>
                             <div>
-                                <img src={item?.imageUrl} className="w-16  p-0" alt="" />
+                                <img src={item?.imageUrl || item?.imageUrls[0]} className="w-16  p-0" alt="" />
                             </div>
                             <h1 className="max-w-72 font-semibold col-span-2">
                                 {" "}

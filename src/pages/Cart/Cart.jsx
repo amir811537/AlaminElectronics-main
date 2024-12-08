@@ -125,6 +125,11 @@ let total=cartTotal+shippingCharge;
 	  
 
 
+ // Scroll to top when the component is rendered
+ useEffect(() => {
+	window.scrollTo(0, 0);
+  }, []);
+
 	const handleSubmitCoupon = async (e) => {
 		e.preventDefault()
 		const coupon = e.target.coupon.value

@@ -15,6 +15,14 @@ export default function Pagination() {
 
     // console.log(productCount);
     
+    useEffect(() => {
+        // Scroll to top when the page number changes
+        window.scrollTo(0, 0);
+        dispatch(setPage({
+            page: pageNumber,
+        }));
+    }, [pageNumber, dispatch]);
+    
     const updatePageNumber = (num) => {
         if (num > page - 1 || 0 > num) {
             return setPageNumber(0);
