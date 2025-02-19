@@ -1,0 +1,35 @@
+.swiper{
+    /* overflow: visible!important; */
+    position: initial!important;
+}
+.popular-container{
+    /* overflow: hidden; */
+    position: relative!important;
+}
+.swiper-button-next{
+    background-color: red;
+    right: 0!important;
+    -webkit-transform: translateX(50%);
+    transform: translateX(50%);
+    border-radius: 50%;
+    height: 48px!important;
+    width: 48px!important;
+    box-shadow: 0 1.2px 1.92251px rgba(0,0,0,.02),0 2px 3.68135px rgba(0,0,0,.04),0 1px 5px rgba(0,0,0,.05);
+}
+.swiper-button-disabled{
+    display: none!important;
+}
+.swiper-button-prev{
+    background-color: red;
+    left: 0!important;
+   -webkit-transform: translateX(-50%);
+    transform: translateX(-50%);
+    border-radius: 50%;
+    height: 48px!important;
+    width: 48px!important;
+    box-shadow: 0 1.2px 1.92251px rgba(0,0,0,.02),0 2px 3.68135px rgba(0,0,0,.04),0 1px 5px rgba(0,0,0,.05);
+}
+.swiper-button-next::after,.swiper-button-prev::after{
+    font-size: 15px!important;
+    color: #313131!important;
+}
