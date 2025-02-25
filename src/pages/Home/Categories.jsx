@@ -42,11 +42,11 @@ const Categories = ({ categories, isLoading }) => {
           Browse By Category
         </h1>
         <div className="flex items-center justify-between gap-4">
-          <button onClick={slidePrev}>
-            <FaArrowLeftLong className="text-xl" />
+          <button className="bg-base-200 rounded-full p-4" onClick={slidePrev}>
+            <FaArrowLeftLong className="lg:text-2xl text-xl" />
           </button>
-          <button onClick={slideNext}>
-            <FaArrowRightLong className="text-xl" />
+          <button className="bg-base-200 rounded-full p-4" onClick={slideNext}>
+            <FaArrowRightLong className="text-xl lg:text-2xl" />
           </button>
         </div>
       </div>
@@ -84,7 +84,7 @@ const Categories = ({ categories, isLoading }) => {
             categories?.map((item, index) => (
               <SwiperSlide key={index}>
                 <Link to={`/allproduct`} onClick={() => handleSelectCategory(item?.title)}>
-                  <div className="flex flex-col items-center justify-center border-2 p-4 md:min-w-44 md:min-h-44 min-h-40 min-w-28">
+                  <div className="flex flex-col items-center justify-center border-2 text-center p-4 md:min-w-44 md:min-h-44 min-h-40 min-w-28">
                     <img src={item?.imageurl} alt={item?.title} className="w-14 h-14 mb-2" />
                     <h1>{item?.title}</h1>
                   </div>

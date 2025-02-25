@@ -124,7 +124,7 @@ const EditProduct = () => {
                     className="w-full"
                   />
                 </div>
-                <p className="text-center">Image {index + 1}</p>
+                <p className="text-start">Image {index + 1}</p>
               </div>
             ))}
 
