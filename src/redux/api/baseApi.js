@@ -87,6 +87,16 @@ export const baseApi = createApi({
 			}),
 			invalidatesTags: ["products"]
 		}),
+		deleteProduct: builder.mutation({
+			query: (id) => ({
+				url: `/products/${id}`, // Ensure correct API endpoint
+				method: "DELETE",
+			}),
+			invalidatesTags: ["products"], // Ensures cache updates after deletion
+		}),
+		
+
+		
 	getSingleProducts: builder.query({
   query: (id) => `/products/${id}`,
   providesTags: ['singleProduct']
@@ -323,7 +333,7 @@ export const {
 	useGetAllOrdersQuery,
 	useGetSingleOrdersQuery,
 	useGetStatisticsQuery,
-	
+	useDeleteProductMutation,
 	useRemoveTokenMutation
 
 

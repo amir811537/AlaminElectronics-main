@@ -15,15 +15,16 @@ export  const categoryItems = [
             "https://i.ibb.co.com/mRn1ptK/wristwatch-line-icon-isolated-vector-600nw-2468699755.webp",
     },
     {
-        title: "Mobile Accessories",
-        imageurl:
-            "https://www.startech.com.bd/image/cache/catalog/category-thumb/mobile-phone-accessories-48x48.png",
-    },
-    {
         title: "Smart Watch",
         imageurl:
             "https://www.startech.com.bd/image/cache/catalog/category-thumb/smart-watch-48x48.png",
     },
+    {
+        title: "Mobile Accessories",
+        imageurl:
+            "https://www.startech.com.bd/image/cache/catalog/category-thumb/mobile-phone-accessories-48x48.png",
+    },
+ 
     {
         title: "Earbuds",
         imageurl:
@@ -39,4 +40,11 @@ export  const categoryItems = [
         imageurl:
             "https://www.startech.com.bd/image/cache/catalog/category-thumb/headphone-48x48.png",
     },
+    {
+
+        title:
+        "Calculator ",
+        imageurl:
+        "https://i.ibb.co/PsdbJFfp/images.png"
+    }
 ];

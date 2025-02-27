@@ -10,7 +10,7 @@ const ManageCoupons = () => {
 	const [setCoupons, { data: couponSubmitStatus }] = useSetCouponMutation()
 	const [deleteCoupons, { data: couponDeleteStatus }] = useDeleteCouponsMutation()
 
-	console.log(couponSubmitStatus)
+	// console.log(couponSubmitStatus)
 
 	const handleSubmit = (e) => {
 		e.preventDefault()
@@ -23,7 +23,7 @@ const ManageCoupons = () => {
 	}
 
 	const handleDelete = (id) => {
-		console.log(id)
+		// console.log(id)
 		Swal.fire({
 			title: "Do you want to delete the Coupon?",
 			text: "You won't be able to revert this!",
