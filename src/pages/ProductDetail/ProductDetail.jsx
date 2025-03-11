@@ -15,6 +15,9 @@ import {
 import toast from "react-hot-toast";
 import InnerImageZoom from "react-inner-image-zoom";
 import "react-inner-image-zoom/lib/InnerImageZoom/styles.min.css";
+import AtomicSpinner from 'atomic-spinner'
+
+
 
 const ProductDetail = () => {
   const { id } = useParams();
@@ -49,7 +52,11 @@ const ProductDetail = () => {
   };
 
   if (productLoading)
-    return <div>Loading...</div>;
+    return <div className="flex justify-center items-center h-[80vh]"> 
+
+<AtomicSpinner />
+
+    </div>;
 
  //  wishlist ---------------------------------------
 
