@@ -193,21 +193,24 @@ const Checkout = () => {
                 }
 
                 {
-                    cartData?.map(item => <div className='grid grid-cols-2  lg:flex justify-between mb-10 items-center '>
-                        <div className='flex   gap-2 items-center'>
-                            <div>
-                                <img src={item?.imageUrl || item?.imageUrls[0]} className="w-16  p-0" alt="" />
-                            </div>
-                            <h1 className="max-w-72 font-semibold col-span-2">
-                                {" "}
-                                {item?.title} x <span className='text-primary'>{item?.quantity}</span>
-                            </h1>
-                        </div>
+  cartData?.map(item => (
+    <div className='grid grid-cols-2 lg:flex justify-between mb-10 items-center' key={item?.id}>
+      <div className='flex gap-2 items-center'>
+        <div>
+          <img src={item?.imageUrl || item?.imageUrls[0]} className="w-16 p-0" alt="" />
+        </div>
+        <h1 className="max-w-72 font-semibold col-span-2">
+          {item?.title?.split(" ").slice(0, 5).join(" ")}{item?.title?.split(" ").length > 5 ? "..." : ""} 
+          x <span className='text-primary'>{item?.quantity}</span>
+        </h1>
+      </div>
 
-                        <h1 className='text-right lg:text-left font-semibold'>BDT {(item?.discountedPrice || item?.price) * item?.quantity}</h1>
-                    </div>
-                    )
-                }
+      <h1 className='text-right lg:text-left font-semibold'>
+        BDT {(item?.discountedPrice || item?.price) * item?.quantity}
+      </h1>
+    </div>
+  ))
+}
 
                 <div className=" space-y-4 pt-10 font-medium ">
                     <div className="flex justify-between border-b-2 pb-4 border-b-black">
@@ -215,11 +218,8 @@ const Checkout = () => {
                         <span>{cartTotal}</span>
                     </div>
                     <div className="flex justify-between border-b-2 pb-4 border-b-black">
-                        <span>Shipping:</span>
-                      <select name="" id="">
-                        <option value="60">ঢাকার ভিতরে 60 টাকা</option>
-                        <option value="120">ঢাকার বাইরে ডেলিভারি চার্জ 120 টাকা </option>
-                      </select>
+                        <span>Shipping: inside dhaka </span>
+                        <span>60 taka</span>
                     </div>
                     <div className="flex justify-between border-b-2 pb-4 border-b-black">
                         <span>Discount:</span>
