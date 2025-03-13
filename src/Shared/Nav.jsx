@@ -6,7 +6,6 @@ import { GoHeart } from "react-icons/go";
 import { VscAccount } from "react-icons/vsc";
 import { FiShoppingBag } from "react-icons/fi";
 import { SlLogout } from "react-icons/sl";
-import { CiStar } from "react-icons/ci";
 import { TiDeleteOutline } from "react-icons/ti";
 import auth from "../../firebase.config";
 import { signOut } from "firebase/auth";
@@ -16,6 +15,8 @@ import { setCategories, setSearchText } from "../redux/features/filter/filterSli
 import { useGetSingleUserQuery, useRemoveTokenMutation } from "../redux/api/baseApi";
 import logo1 from "../assets/Logo/glasses-svgrepo-com.svg"
 import logo2 from "../assets/Logo/watch-alt-svgrepo-com.svg"
+import { Wave } from 'react-animated-text';
+
 
 const Nav = () => {
 	const [currentLogo, setCurrentLogo] = useState(logo1);
@@ -284,7 +285,7 @@ const Nav = () => {
 					</div>
 					<a href="/" className="flex gap-2 items-center text-2xl font-semibold">
       <img src={currentLogo} alt="logo" className="h-10 w-10" />
-      <span>Alamin Electronics</span>
+      <span> <Wave text="Alamin Electronics" /> </span>
     </a>				</div>
 				<div className="navbar-center  hidden lg:flex">
 					<ul className="flex gap-8 -ml-28 font-medium px-1">{ul}</ul>
