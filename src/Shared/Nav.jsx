@@ -16,6 +16,7 @@ import { useGetSingleUserQuery, useRemoveTokenMutation } from "../redux/api/base
 import logo1 from "../assets/Logo/glasses-svgrepo-com.svg"
 import logo2 from "../assets/Logo/watch-alt-svgrepo-com.svg"
 import { Wave } from 'react-animated-text';
+// import optiwatch from'../../src/assets/Logo/Optiwatch.png'
 
 
 const Nav = () => {
@@ -23,12 +24,12 @@ const Nav = () => {
 
 	useEffect(() => {
 		const logoInterval = setInterval(() => {
-		  setCurrentLogo((prevLogo) => (prevLogo === logo1 ? logo2 : logo1));
+setCurrentLogo((prevLogo) => (prevLogo === logo1 ? logo2 : logo1));
 		}, 2000); // Change logo every 3 seconds
 	
 		// Clean up the interval when component unmounts
 		return () => clearInterval(logoInterval);
-	  }, []);
+}, []);
 
 	const dispatch = useDispatch()
 	const navigate = useNavigate()
